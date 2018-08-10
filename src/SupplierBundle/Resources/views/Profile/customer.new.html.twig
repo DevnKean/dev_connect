@@ -69,11 +69,19 @@
                 var obj = $('.customer-collection .box.box-info .box-header.with-border');
                 //form name increase
                 var len = obj.length;
-                var str = "Customer" + len;
+                var str = "Customer " + len;
                 len = len - 1;
+                console.log('customer: ' + len);
                 $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+len+')').html(str);
+                //len = len -1;
+                //console.log('collapse: ' + len);
+                //$('.customer-collection .box.box-info:eq('+len+')').addClass('collapsed-box');
+                //$('.customer-collection .box.box-info .box-header:eq('+len+')').css("display","block");
+                //$('.customer-collection .box.box-info .box-tools .btn-box-tool .fa:eq('+len+')').addClass("fa-plus");
+                //$('.customer-collection .box.box-info .box-tools .btn-box-tool .fa:eq('+len+')').addClass("fa-minus");
                 /////////
                 $('.dirty-check').find('button[type=submit]').removeAttr('disabled');
+                $(".select2-search__field").attr("data-is-dirrty", "false");
                 return true;
             },
             after_remove: function(collection, element) {

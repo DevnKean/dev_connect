@@ -47,7 +47,7 @@ class CustomerType extends AbstractType
                 'label' => 'Name',
                 'required' => false,
                 'attr' => [                    
-                    'placeholder' => 'Optional: Please enter the customer company name',
+                    'placeholder' => 'Optional: Business Name',
                 ],
             ])
             ->add('industryVertical', ChoiceType::class, [
@@ -73,7 +73,9 @@ class CustomerType extends AbstractType
             $builder
                 ->add('totalSeats', IntegerType::class, [
                     'label' => 'Total seats',
-                    
+                    'attr'=> [
+                        'help'=>'text help',
+                    ],
                 ])
                 // ->add('percentageOfBusiness', PercentType::class, [
                 //     'label' => 'Percentage of Current Total Business',
