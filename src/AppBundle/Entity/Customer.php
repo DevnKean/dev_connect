@@ -65,10 +65,18 @@ class Customer implements StringableInterface
      */
     private $totalSeats;
 
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="percentage_of_business", type="decimal", precision=10, scale=2, nullable=true)
+    //  * @Gedmo\Versioned
+    //  */
+    // private $percentageOfBusiness;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="percentage_of_business", type="decimal", precision=10, scale=2, nullable=true)
+     * @ORM\Column(name="percentage_of_business", type="string", length=50)
      * @Gedmo\Versioned
      */
     private $percentageOfBusiness;
@@ -79,6 +87,7 @@ class Customer implements StringableInterface
      * @ORM\Column(name="work_period", type="string", length=30)
      * @Gedmo\Versioned
      */
+    
     private $workPeriod;
 
     /**
@@ -225,6 +234,30 @@ class Customer implements StringableInterface
         return $this->totalSeats;
     }
 
+    // /**
+    //  * Set percentageOfBusiness
+    //  *
+    //  * @param string $percentageOfBusiness
+    //  *
+    //  * @return Customer
+    //  */
+    // public function setPercentageOfBusiness($percentageOfBusiness)
+    // {
+    //     $this->percentageOfBusiness = $percentageOfBusiness;
+
+    //     return $this;
+    // }
+
+    // /**
+    //  * Get percentageOfBusiness
+    //  *
+    //  * @return string
+    //  */
+    // public function getPercentageOfBusiness()
+    // {
+    //     return $this->percentageOfBusiness;
+    // }
+
     /**
      * Set percentageOfBusiness
      *
@@ -248,6 +281,7 @@ class Customer implements StringableInterface
     {
         return $this->percentageOfBusiness;
     }
+
 
     /**
      * Set workPeriod
@@ -342,6 +376,7 @@ class Customer implements StringableInterface
         ];
     }
 
+    
     public static function getYears()
     {
         return [
@@ -353,6 +388,24 @@ class Customer implements StringableInterface
             '5 to 10 Years',
             '10 to 20 Years',
             '> 20 Years',
+        ];
+    }
+    public static function getPercentageOfBusiness_S()
+    {
+        return [
+            '0% to 5%',
+            '6% to 10%',
+            '11% to 15%',
+            '16% to 20%',
+            '21% to 25%',
+            '26% to 30%',
+            '31% to 40%',
+            '41% to 50%',
+            '51% to 60%',
+            '61% to 70%',
+            '71% to 80%',
+            '81% to 90%',
+            '91% to 100%', 
         ];
     }
 

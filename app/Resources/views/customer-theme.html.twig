@@ -11,42 +11,46 @@
         <!-- /.box-header -->
         <!-- form start -->
         <div class="box-body">
-            <div class="col-sm-12">
-                <div class="row">
-                    {# <div class="col-sm-12 col-md-12 col-lg-6">
-                        {{ form_row(form.titleC) }}
-                    </div> #}
-                    {% if form.name is defined %}
-                        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-10">
+                <div class="form-group row">                                      
+                    <div class="col-md-6">
+                        {% if form.name is defined %}
                             {{ form_row(form.name, {'help': 'The customer name is used for our reference only and is NOT disclosed to any customers'}) }}
-                        </div>
-                    {% endif %}
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        {{ form_row(form.industryVertical) }}
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        {{ form_row(form.functions) }}
+                        {% endif %}
                     </div>
                 </div>
-                <div class="row">
-                    {% if form.totalSeats is defined %}
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        {{ form_row(form.totalSeats, {'help': 'Please provide the total number of seats used by this customer'}) }}
+                <div class="form-group row">
+                    <div class="col-md-6">                   
+                            {{ form_row(form.industryVertical) }}
                     </div>
-                    {% endif %}
-                    {% if form.percentageOfBusiness is defined  %}
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        {{ form_row(form.percentageOfBusiness, {'help': 'Please provide an estimate of what proportion of your business is attributed to this customer'}) }}
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                            {{ form_row(form.functions) }}
                     </div>
-                    {% endif %}
-                    <div class="col-sm-12 col-md-12 col-lg-6">
+                </div>                
+                <div class="form-group row">
+                    <div class="col-md-6">
                         {{ form_row(form.workPeriod) }}
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        {{ form_row(form.locations) }}
-                    </div>
                 </div>
-
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        {% if form.totalSeats is defined %}
+                            {{ form_row(form.totalSeats, {'help': 'Please provide the total number of seats used by this customer'}) }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        {% if form.percentageOfBusiness is defined  %}                        
+                            {{ form_row(form.percentageOfBusiness, {'help': 'Please provide an estimate of what proportion of your business is attributed to this customer'}) }}
+                        {% endif %}
+                    </div>
+                </div>   
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        {{ form_row(form.locations) }}                    
+                    </div>
+                </div>                           
             </div>
         </div>
     </div>
