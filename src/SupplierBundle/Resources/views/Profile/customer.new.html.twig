@@ -1,0 +1,85 @@
+{% extends "ThemeBundle:layout:base-layout.html.twig" %}
+
+{% block page_title %}Customers{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+    {% form_theme form 'jquery.collection.html.twig' 'customer-theme.html.twig' %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include '@Supplier/Profile/notification.html.twig' %}
+            {% include '@Supplier/Profile/feedback.html.twig' %}
+            <div class="box box-success">
+                <div class="box-header with-border alert alert-info">
+                    <h3 class="box-title">Please provide information about your current customers.</h3>
+                    <h5>This section is used to understand the mix of your current customer base with regards to their industry vertical, length of time they have been a customer etc and helps us ensure there is a good fit to our customer's requirements. </h5>
+                    <h5>Please note if you do not want to reveal the name of the customer please just leave the field blank.</h5>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                {# <h3 class="box-title">Customer</h3> #}
+                {{ form_start(form, {'attr': {'class': 'dirty-check', 'id':'customer_form'}}) }}
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{ form_widget(form.customers)}}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button  type="submit" class="btn btn-primary" onClick="customer_form" disabled>Save</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts_inline %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var collections = [];
+        $('.customer-collection').collection({
+            add: '<button type="button" class="btn btn-success">Add another customer</button>',
+            remove: '<button type="button" class="btn btn-danger pull-right">Remove</button>',
+            allow_add: true,
+            allow_remove: true,
+            allow_up: false,
+            allow_down: false,
+            min: 1,
+            add_at_the_end: true,
+            after_init: function (collection) {
+                collection.children().each(function (index, element) {
+                    collections.push($(element).attr('id'));
+                });
+                ////form title increase//
+                var obj = $('.customer-collection .box.box-info .box-header.with-border');
+                obj.each(function (index, ele) {                    
+                    console.log(index);
+                    temp = index + 1;
+                    var str = "Customer" + temp;
+                    i_index = temp - 1;
+                    $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
+                });
+                //console.log(obj.length);
+            },
+            after_add: function(collection, element) {
+                element.find('select').select2().trigger('change');
+                var obj = $('.customer-collection .box.box-info .box-header.with-border');
+                //form name increase
+                var len = obj.length;
+                var str = "Customer" + len;
+                len = len - 1;
+                $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+len+')').html(str);
+                /////////
+                $('.dirty-check').find('button[type=submit]').removeAttr('disabled');
+                return true;
+            },
+            after_remove: function(collection, element) {
+                $('.dirty-check').find('button[type=submit]').removeAttr('disabled');
+                return true;
+            }
+        });
+    </script>
+{% endblock %}

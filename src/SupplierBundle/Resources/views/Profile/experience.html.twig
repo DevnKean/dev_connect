@@ -1,0 +1,83 @@
+{% extends "ThemeBundle:layout:base-layout.html.twig" %}
+
+{% block page_title %}Experience{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include '@Supplier/Profile/notification.html.twig' %}
+            {% include '@Supplier/Profile/feedback.html.twig' %}
+            <div class="box box-primary">
+                <div class="box-header with-border alert alert-info">
+                    <div class="row experience_header">
+                        <div class="col-sm-12">
+                            <h3 class="box-title">Please provide the number of years you have been actively been providing the following services:</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                {{ form_start(form, {'attr': {'class': 'dirty-check'}}) }}
+                <div class="box-body">
+                    <div class="row experience_row">
+                        <div class="col-sm-4">
+                            <h5 class="exprience_comment">Please provide a self assessment of your skill level</h5>
+                        </div>
+                    </div>
+                    {% set count = 0 %}
+                    {% for experience in form.experiences %}
+                        {% if (count % 2 == 0) %}
+                        <div class="row experience_row">
+                        {% endif %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col col-sm-4">
+                                    {{ form_widget(experience.function) }}
+                                    <h4 class="experience_title">{{ form_label(experience.yearsExperience, functions[loop.index0]) }}</h4>
+                                </div>
+                                <div class="col col-sm-4 with_label">
+                                    {{ form_row(experience.yearsExperience) }}
+                                </div>
+                                <div class="col col-sm-4 with_label">
+                                    {{ form_row(experience.selfRating) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if (count % 2 == 1) %}
+                        </div>
+                        {% endif %}
+
+                        {% set count = count + 1 %}
+                    {% endfor %}
+
+                    {% if (count % 2 == 0) %}
+                    </div>
+                    {% endif %}
+
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts_inline %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('.year-experience').change(function() {
+            var yearExperience = $(this);
+            var row = yearExperience.closest('div.row');
+            if (yearExperience.val() === 'Nil') {
+                row.find('.self-rating').val('').prop('disabled', true);
+            } else {
+                row.find('.self-rating').prop('disabled', false);
+            }
+        }).change();
+    </script>
+{% endblock %}

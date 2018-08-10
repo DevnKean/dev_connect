@@ -1,0 +1,53 @@
+{% extends "ThemeBundle:layout:base-layout.html.twig" %}
+
+{% block page_title %}Support Function{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include '@Supplier/Profile/notification.html.twig' %}
+            {% include '@Supplier/Profile/feedback.html.twig' %}
+            <div class="box box-primary">
+                <div class="box-header with-border alert alert-info">
+                    <h3 class="box-title">Please provide us with an overview of how many support/management resources are within your organisation</h3>
+                    <h5>Some of our customers are very interested in the type of support available to their campaign. To enable us to understand more about the support roles and functions within your organisation, please complete the table below. </h5>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                {{ form_start(form, {'attr': {'class': 'dirty-check'}}) }}
+                <div class="box-body support_div">
+                    {% for supportFunction in form.supportFunctions %}
+                        <div class="row experience_row">                        
+                            <div class="col-sm-3 support_title">
+                                <label>{{ functions[loop.index0] }}</label>
+                            </div>
+                            <div class="col-sm-3 with_label">
+                                {{ form_row(supportFunction, {'label': 'Dedicated Full Time Equivalents'}) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success" disabled>Save</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts_inline %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('form[name="supplierbundle_support"]').find('input[type="text"]').each(function () {
+            var id = '#' + $(this).attr('id');
+            new Cleave(id, {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        });
+    </script>
+{% endblock %}
