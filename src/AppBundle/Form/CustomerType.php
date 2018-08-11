@@ -66,13 +66,13 @@ class CustomerType extends AbstractType
                 'multiple' => true,
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Please select the service(s) you supply for this customer',
+                    'data-placeholder' => ' Click here to select (you can add multiple)',
                 ],
             ]);
         if ($supplier->isOutSourcing()) {
             $builder
                 ->add('totalSeats', IntegerType::class, [
-                    'label' => 'Total seats',
+                    'label' => 'Total Active seats',
                     'attr'=> [
                         'help'=>'text help',
                     ],
@@ -82,12 +82,12 @@ class CustomerType extends AbstractType
                 //     'scale' => 2,
                 // ]);
                 ->add('percentageOfBusiness', ChoiceType::class, [
-                    'label' => 'Percentage of Current Total Business',
+                    'label' => '% of Current Business',
                     'choices' => array_combine(Customer::getPercentageOfBusiness_S(), Customer::getPercentageOfBusiness_S()),
-                    'placeholder' => 'Percentage of Current Total Business',
+                    'placeholder' => '   $ of Current Business',
                     'attr' => [
                         'class' => 'select2',
-                        'data-placeholder' => 'Percentage of Current Total Business',
+                        'data-placeholder' => '   % of Current Business',
                     ],
                 ]);
         }
@@ -113,10 +113,10 @@ class CustomerType extends AbstractType
             ->add('workPeriod', ChoiceType::class, [
                 'label' => 'How long have they been a customer?',
                 'choices' => array_combine(Customer::getYears(), Customer::getYears()),
-                'placeholder' => 'Please select the work period',
+                'placeholder' => 'Please select the duration',
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Please select the work period',
+                    'data-placeholder' => 'Please select the duration',
                 ],
             ]);
     }

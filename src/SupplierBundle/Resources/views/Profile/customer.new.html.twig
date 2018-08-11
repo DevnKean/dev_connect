@@ -61,18 +61,49 @@
                     var str = "Customer " + temp;
                     i_index = temp - 1;
                     $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
+                    $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+temp+')').on('click', function() {
+                        if($('.customer-collection .box.box-info .box-body').css('display') == 'none' ) {
+                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
+                        } else {
+                            company_name = $("#supplierbundle_customer_customers_"+i_index+"_name").val();
+                            if(company_name == ''){
+                                company_name = str;
+                            }
+                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(company_name);
+                            
+                        }
+                    });
                 });
                 //console.log(obj.length);
             },
             after_add: function(collection, element) {
                 element.find('select').select2().trigger('change');
-                var obj = $('.customer-collection .box.box-info .box-header.with-border');
+                //form set the title with name value
+                
+                //////
                 //form name increase
+                var obj = $('.customer-collection .box.box-info .box-header.with-border');
                 var len = obj.length;
+                
                 var str = "Customer " + len;
-                len = len - 1;
-                console.log('customer: ' + len);
+                len = len - 1;                
+                console.log('customer: ' + len);                
                 $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+len+')').html(str);
+                len = len-1;
+                var button_length = (len + 1) * 2+1;
+                console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')'));
+                $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+(button_length)+')').on('click', function() {
+                    console.log($("#supplierbundle_customer_customers_1_name").val());
+                    if($('.customer-collection .box.box-info .box-body:eq('+(len+1)+')').css('display') == 'none' ) {
+                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').html(str);
+                    } else {
+                        company_name = $("#supplierbundle_customer_customers_"+(len+1)+"_name").val();
+                        if(company_name == ''){
+                            company_name = str;
+                        }
+                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').html(company_name);
+                    }
+                });
                 //len = len -1;
                 //console.log('collapse: ' + len);
                 //$('.customer-collection .box.box-info:eq('+len+')').addClass('collapsed-box');

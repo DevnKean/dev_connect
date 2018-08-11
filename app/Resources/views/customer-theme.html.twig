@@ -4,7 +4,7 @@
             <h3 class="box-title">Customer</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="collection-remove btn btn-danger btn-sm" title="Delete element"><i class="fa fa-trash"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-info btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
             </div>
         </div>
@@ -35,25 +35,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-2">
-                    {# {% if form.totalSeats is defined %}
-                        <div class="col-md-2">
-                                                
-                            {{ form_label(form.totalSeats) }}
-                            <a href="#" data-toggle="tooltip" data-original-title="Please provide the total number of seats used by this customer">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
-                            
-                        </div>
-                        <div class="col-md-1">
-                            {{form_widget(form.totalSeats)}}
-                        </div>
-                    {% endif %} #}
+                    <div class="col-md-2">                    
                         {% if form.totalSeats is defined %}
                             {{ form_row(form.totalSeats, {'help': 'Please provide the total number of seats used by this customer'}) }}
                         {% endif %}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 poBselect">
                         {% if form.percentageOfBusiness is defined  %}                        
                             {{ form_row(form.percentageOfBusiness, {'help': 'Please provide an estimate of what proportion of your business is attributed to this customer'}) }}
                         {% endif %}
