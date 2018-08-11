@@ -16,5 +16,5 @@
 /vendor/
 #/web/bundles/
 .idea/
-/app/Resources/views/jquery.collection.html.twig
+#/app/Resources/views/jquery.collection.html.twig
 

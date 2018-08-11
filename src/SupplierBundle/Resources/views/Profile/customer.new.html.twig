@@ -60,8 +60,12 @@
                     temp = index + 1;
                     var str = "Customer " + temp;
                     i_index = temp - 1;
+                    console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+temp+')'));
                     $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
                     $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+temp+')').on('click', function() {
+                        console.log("button_click");
+                        console.log($('.customer-collection .box.box-info .box-body').css('display'));
+                        console.log($('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')'));
                         if($('.customer-collection .box.box-info .box-body').css('display') == 'none' ) {
                             $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
                         } else {
