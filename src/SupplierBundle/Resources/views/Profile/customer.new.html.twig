@@ -59,22 +59,25 @@
                     console.log(index);
                     temp = index + 1;
                     var str = "Customer " + temp;
-                    i_index = temp - 1;
-                    console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+temp+')'));
-                    $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
-                    $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+temp+')').on('click', function() {
+                    temp = temp - 1;
+                    var button_length = index * 2+1;
+                    console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')'));
+                    $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')').html(str);
+                    $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')').on('click', function() {
+                        var temp = index;
+                        console.log(temp);
                         console.log("button_click");
-                        console.log($('.customer-collection .box.box-info .box-body').css('display'));
-                        console.log($('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')'));
-                        if($('.customer-collection .box.box-info .box-body').css('display') == 'none' ) {
-                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(str);
+                        console.log($('.customer-collection .box.box-info .box-body:eq('+(temp)+')').css('display'));
+                        console.log($('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')'));
+                        var str = "Customer " + (temp+1);
+                        if($('.customer-collection .box.box-info .box-body:eq('+(temp)+')').css('display') == 'none' ) {
+                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')').html(str);
                         } else {
-                            company_name = $("#supplierbundle_customer_customers_"+i_index+"_name").val();
+                            company_name = $("#supplierbundle_customer_customers_"+(temp)+"_name").val();
                             if(company_name == ''){
                                 company_name = str;
                             }
-                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+i_index+')').html(company_name);
-                            
+                            $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')').html(company_name);
                         }
                     });
                 });
