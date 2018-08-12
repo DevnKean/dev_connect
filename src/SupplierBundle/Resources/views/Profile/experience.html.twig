@@ -13,18 +13,15 @@
                     <div class="row experience_header">
                         <div class="col-sm-12">
                             <h3 class="box-title">Please provide the number of years you have been actively been providing the following services:</h3>
+                            <h5>Please provide a self assessment of your skill level</h5>
                         </div>
                     </div>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 {{ form_start(form, {'attr': {'class': 'dirty-check'}}) }}
-                <div class="box-body">
-                    <div class="row experience_row">
-                        <div class="col-sm-4">
-                            <h5 class="exprience_comment">Please provide a self assessment of your skill level</h5>
-                        </div>
-                    </div>
+                <div class="box-body">                
+                    
                     <div class="row">
                     {% for experience in form.experiences %}
                         <div class="col-sm-6">
@@ -93,11 +90,13 @@
     {{ parent() }}
     <script type="text/javascript">
         var init_text = 'Please select ...';
+       
         $('.year-experience').change(function() {    
             var yearExperience = $(this);
             var row = yearExperience.closest('div.panel-body');
             //console.log(init_text);
-            if (yearExperience.val() === 'Nil') {
+            if ((yearExperience.val() === 'Nil')) {
+                
                 row.find('.self-rating>option:selected').html('Not applicable');
                 //console.log(row.find('.self-rating').val());
                 row.find('.self-rating').prop('disabled', true);
@@ -106,14 +105,15 @@
             } else {
                 row.find('.self-rating>option:selected').html(init_text);
                 row.find('.self-rating').prop('disabled', false);
+                $('.self-rating').change(function() {
+                    
+                    var selfrating = $(this);  
+                    var row = selfrating.closest('div.panel-body');
+                    init_text = row.find('.self-rating>option:selected').html();                    
+                })
             }
         }).change();  
-        $('.self-rating').change(function() {
-            var selfrating = $(this);  
-            var row = selfrating.closest('div.panel-body');
-            init_text = row.find('.self-rating>option:selected').html();
-            
-        })
+        
     
         {# $('.year-experience').click(function(){
             if( $('.year-experience').val()=='Nil')

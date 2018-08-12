@@ -9,9 +9,16 @@
             {% include '@Supplier/Profile/notification.html.twig' %}
             {% include '@Supplier/Profile/feedback.html.twig' %}
             <div class="box box-primary">
-                <div class="box-header with-border alert alert-info">                
-                    <h3 class="box-title">Please provide two current references who can vouch for your Virtual Assistant service.</h3>
-                    <h5>The references may be contacted as part of our assessment process however we will not release their details to prospective customers. </h5>
+                <div class="box-header with-border alert alert-info">
+                    {% if supplier.outSourcing %}            
+                        <h3 class="box-title">Please provide contact details for two current customers who will act as a reference for your business.</h3>
+                        <h5>Please note this is for our (CX Connect) purposes only. We will not be proving customer references to potential leads.</h5>
+                        <h5>If you'd like to include customer references when you send a proposal to a customer that will be entirely at your discretion.</h5>
+                    {% endif %}
+                    {% if supplier.virtualAssistant %}
+                        <h3 class="box-title">Please provide two current references who can vouch for your Virtual Assistant service.</h3>
+                        <h5>The references may be contacted as part of our assessment process however we will not release their details to prospective customers.</h5>
+                    {% endif %}                    
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

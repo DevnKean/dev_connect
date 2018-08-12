@@ -68,7 +68,7 @@ class CustomerType extends AbstractType
                     'label' => 'Total Active seats    ',                    
                     'attr'=> [
                         'help'=>'text help',
-                        'placeholder' => 'Please enter number',                     
+                                          
                     ],
                 ])
                 // ->add('percentageOfBusiness', PercentType::class, [
