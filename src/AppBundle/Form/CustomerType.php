@@ -35,14 +35,7 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $supplier = $this->user->getSupplier();
-        $builder
-            // ->add('titleC', TextType::class, [
-            //     'label' => 'CCCC',
-            //     'required' => false,
-            //     'attr' => [                    
-            //         'placeholder' => 'Optional: Business Name ',
-            //     ],              
-            // ])
+        $builder        
             ->add('name', TextType::class, [
                 'label' => 'Name',
                 'required' => false,
@@ -72,9 +65,10 @@ class CustomerType extends AbstractType
         if ($supplier->isOutSourcing()) {
             $builder
                 ->add('totalSeats', IntegerType::class, [
-                    'label' => 'Total Active seats',
+                    'label' => 'Total Active seats    ',                    
                     'attr'=> [
                         'help'=>'text help',
+                        'placeholder' => 'Please enter number',                     
                     ],
                 ])
                 // ->add('percentageOfBusiness', PercentType::class, [
@@ -84,10 +78,10 @@ class CustomerType extends AbstractType
                 ->add('percentageOfBusiness', ChoiceType::class, [
                     'label' => '% of Current Business',
                     'choices' => array_combine(Customer::getPercentageOfBusiness_S(), Customer::getPercentageOfBusiness_S()),
-                    'placeholder' => '   $ of Current Business',
+                    'placeholder' => 'Please select % of Current Total Business', 
                     'attr' => [
                         'class' => 'select2',
-                        'data-placeholder' => '   % of Current Business',
+                        'data-placeholder' => 'Please select % of Current Total Business',
                     ],
                 ]);
         }

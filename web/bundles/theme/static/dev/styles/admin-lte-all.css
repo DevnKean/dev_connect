@@ -11806,7 +11806,7 @@ a:hover,a:active,a:focus{
   opacity:1
 }
 /*width of total seats and percentage of business*/
-.col-md-2 .form-group input {
+.col-md-3 .form-group input {
   width: 35% !important;
 }
 .poBselect .select2.select2-container.select2-container--bootstrap{
@@ -12232,6 +12232,11 @@ a:hover,a:active,a:focus{
   position:absolute;
   right:40%;
   top:5px;
+}
+.box-header>.box-tools .btn-m-p{
+  margin-left: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 
 .box-header>.box-tools [data-toggle="tooltip"]{

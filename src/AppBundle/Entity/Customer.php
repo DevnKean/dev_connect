@@ -24,21 +24,21 @@ class Customer implements StringableInterface
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titleC", type="string", length=50)
-     * @Gedmo\Versioned
-     */
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="titleC", type="string", length=50)
+    //  * @Gedmo\Versioned
+    //  */
 
-    private $titleC;
+    // private $titleC;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=50)
-     * @Gedmo\Versioned
-     */
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="name", type="string", length=50)
+    //  * @Gedmo\Versioned
+    //  */
     private $name;
 
     /**
@@ -114,29 +114,29 @@ class Customer implements StringableInterface
         return $this->id;
     }
 
-     /**
-     * Set title_c
-     *
-     * @param string $title_c
-     *
-     * @return Customer
-     */
-    public function setTitleC($titleC)
-    {
-        $this->titleC = $titleC;
+    //  /**
+    //  * Set title_c
+    //  *
+    //  * @param string $title_c
+    //  *
+    //  * @return Customer
+    //  */
+    // public function setTitleC($titleC)
+    // {
+    //     $this->titleC = $titleC;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getTitleC()
-    {
-        return $this->titleC;
-    }
+    // /**
+    //  * Get name
+    //  *
+    //  * @return string
+    //  */
+    // public function getTitleC()
+    // {
+    //     return $this->titleC;
+    // }
 
     /**
      * Set name
