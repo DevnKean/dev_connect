@@ -65,7 +65,8 @@ class CustomerType extends AbstractType
         if ($supplier->isOutSourcing()) {
             $builder
                 ->add('totalSeats', IntegerType::class, [
-                    'label' => 'Total Active seats    ',                    
+                    'label' => 'Total Active seats    ',
+                    'placeholder' => 'Please enter number',              
                     'attr'=> [
                         'help'=>'text help',
                                           

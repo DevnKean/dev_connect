@@ -401,6 +401,11 @@ class ProfileController extends Controller
                 $experience->setFunction($function);
                 $supplier->addExperience($experience);
             }
+            foreach (Service::getVAFunctions() as $function) {
+                $experience = new Experience();
+                $experience->setFunction($function);
+                $supplier->addExperience($experience);
+            }
         }
         $logEntries = $manager->getRepository('AppBundle:LogEntry')->findBy([
             'name' => Profile::PROFILE_EXPERIENCE,
@@ -443,6 +448,7 @@ class ProfileController extends Controller
         return $this->render('SupplierBundle:Profile:experience.html.twig', [
             'form' => $form->createView(),
             'functions' => Service::getFunctions(),
+            'vafunctions' => Service::getVAFunctions(),
             'status' => $supplier->getProfileStatus(Profile::PROFILE_EXPERIENCE),
             'profile' => $profile,
             'entries' => $entries,

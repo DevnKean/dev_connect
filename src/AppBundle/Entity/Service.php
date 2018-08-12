@@ -120,7 +120,8 @@ class Service
     {
         return [
             'Outsourcing',
-            'Consulting'
+            'Consulting',
+            'Virtual Assistant'
         ];
     }
 
