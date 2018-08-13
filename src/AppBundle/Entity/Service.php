@@ -178,19 +178,19 @@ class Service
             'Telemarketing (outbound calls)',
             'Surveys (outbound calls)',
             'Reception Services (inbound)',
-            'Sales (inbound lead conversion)',
+            'Sales(inbound lead conversion)',
             'Sales (inbound order taking) ',
             'Message taking (inbound) ',
             'Product enquiries (inbound)',
             'Surveys (inbound)',
-            'Appointments/bookings (inbound)',
+            'Appointments/bookings(inbound)',
             'Social Media management',
             'Administrative Support',
             'Data entry',
             'Calendar management',
             'Research',
             'Reporting',
-            'Bookkeeping',
+            'Book keeping',
             'Scheduling' 
         ];
     }
