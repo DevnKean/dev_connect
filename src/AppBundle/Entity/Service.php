@@ -156,6 +156,20 @@ class Service
             'Appointment Setting'
         ];
     }
+    public static function getlengthOFtimes_S()
+    {
+        return [
+            'Still a current customer',
+            'Under a week',
+            'Under a month',
+            '1 to 3 months',
+            '4 to 6 months',
+            '7 to 12 months',
+            '1 to 2 years',
+            '3 to 5 years',
+            'More than 5 years',
+        ];
+    }
 
     public static function getVAFunctions()
     {

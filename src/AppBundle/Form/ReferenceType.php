@@ -84,7 +84,7 @@ class ReferenceType extends AbstractType
          
             ->add('lengthOFtimes', ChoiceType::class, [
                 'label' => 'Length of time they were a customer?',
-                'choices' => array_combine(Reference::getlengthOFtimes_S(), Reference::getlengthOFtimes_S()),
+                'choices' => array_combine(Service::getlengthOFtimes_S(), Service::getlengthOFtimes_S()),
                 'placeholder' => 'Please select',
                 'attr' => [
                     'class' => 'select2',
