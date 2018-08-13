@@ -70,13 +70,13 @@ class Reference implements StringableInterface
      */
     private $workPhone;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mobile_phone", type="string", length=20)
-     * @Gedmo\Versioned
-     */
-    private $mobilePhone;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="mobile_phone", type="string", length=20)
+    //  * @Gedmo\Versioned
+    //  */
+    // private $mobilePhone;
 
     /**
      * @var string
@@ -108,13 +108,20 @@ class Reference implements StringableInterface
      */
     private $type;
 
+    // /**
+    //  * @var string
+    //  * @ORM\Column(name="campaign", type="string", length=20)
+    //  * @Gedmo\Versioned
+    //  */
+    // private $campaign;
+
     /**
      * @var string
-     * @ORM\Column(name="campaign", type="string", length=20)
+     *
+     * @ORM\Column(name="lengthOFtimes", type="string", length=50)
      * @Gedmo\Versioned
      */
-    private $campaign;
-
+    private $lengthOFtimes;
     /**
      * @var string
      * @ORM\Column(name="campaign_description", type="text")
@@ -257,29 +264,29 @@ class Reference implements StringableInterface
         return $this->workPhone;
     }
 
-    /**
-     * Set mobilePhone
-     *
-     * @param string $mobilePhone
-     *
-     * @return Reference
-     */
-    public function setMobilePhone($mobilePhone)
-    {
-        $this->mobilePhone = $mobilePhone;
+    // /**
+    //  * Set mobilePhone
+    //  *
+    //  * @param string $mobilePhone
+    //  *
+    //  * @return Reference
+    //  */
+    // public function setMobilePhone($mobilePhone)
+    // {
+    //     $this->mobilePhone = $mobilePhone;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get mobilePhone
-     *
-     * @return string
-     */
-    public function getMobilePhone()
-    {
-        return $this->mobilePhone;
-    }
+    // /**
+    //  * Get mobilePhone
+    //  *
+    //  * @return string
+    //  */
+    // public function getMobilePhone()
+    // {
+    //     return $this->mobilePhone;
+    // }
 
     /**
      * Set functions
@@ -303,6 +310,45 @@ class Reference implements StringableInterface
     public function getFunctions()
     {
         return $this->functions;
+    }
+
+    /**
+     * Set lengthOFtimes
+     *
+     * @param string $lengthOFtimes
+     *
+     * @return Reference
+     */
+    public function setLengthOFtimes($lengthOFtimes)
+    {
+        $this->lengthOFtimes = $lengthOFtimes;
+
+        return $this;
+    }
+
+    /**
+     * Get lengthOFtimes
+     *
+     * @return string
+     */
+    public function getlengthOFtimes()
+    {
+        return $this->lengthOFtimes;
+    }
+
+    public static function getlengthOFtimes_S()
+    {
+        return [
+            'Still a current customer',
+            'Under a week',
+            'Under a month',
+            '1 to 3 months',
+            '4 to 6 months',
+            '7 to 12 months',
+            '1 to 2 years',
+            '3 to 5 years',
+            'More than 5 years',
+        ];
     }
 
     /**
@@ -361,21 +407,21 @@ class Reference implements StringableInterface
         $this->type = $type;
     }
 
-    /**
-     * @return string
-     */
-    public function getCampaign()
-    {
-        return $this->campaign;
-    }
+    // /**
+    //  * @return string
+    //  */
+    // public function getCampaign()
+    // {
+    //     return $this->campaign;
+    // }
 
-    /**
-     * @param string $campaign
-     */
-    public function setCampaign($campaign)
-    {
-        $this->campaign = $campaign;
-    }
+    // /**
+    //  * @param string $campaign
+    //  */
+    // public function setCampaign($campaign)
+    // {
+    //     $this->campaign = $campaign;
+    // }
 
     /**
      * @return mixed

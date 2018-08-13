@@ -66,10 +66,10 @@ class CustomerType extends AbstractType
             $builder
                 ->add('totalSeats', IntegerType::class, [
                     'label' => 'Total Active seats    ',
-                    'placeholder' => 'Please enter number',              
+                                
                     'attr'=> [
                         'help'=>'text help',
-                                          
+                        'placeholder' => 'Please enter number',             
                     ],
                 ])
                 // ->add('percentageOfBusiness', PercentType::class, [

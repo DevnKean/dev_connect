@@ -13,42 +13,89 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ReferenceType extends AbstractType
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function __construct(TokenStorageInterface $storage)
+    {
+        $this->user = $storage->getToken()->getUser();
+    }
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $supplier = $this->user->getSupplier();
         $builder
-            ->add('name')
-            ->add('companyName')
+            ->add('name', TextType::class, [
+                'label' => 'Name'
+            ])
+            ->add('companyName', TextType::class, [
+                'label' => 'Company name'
+                ])
             ->add('title', TextType::class, [
                 'label' => 'Job Title'
             ])
-            ->add('email')
-            ->add('workPhone')
-            ->add('mobilePhone')
-            ->add('functions', ChoiceType::class, [
-                'choices' => array_combine(Service::getFunctions(), Service::getFunctions()),
-                'placeholder' => 'Please select functions',
-                'multiple' => true,
+            ->add('email', TextType::class, [
+                'label' => 'Email'
+            ])
+            ->add('workPhone', TextType::class, [
+                'label' => 'Best Contact Number'
+            ]);
+            //->add('mobilePhone')
+        if ($supplier->isOutSourcing()) {
+            $builder
+                ->add('functions', ChoiceType::class, [
+                    'choices' => array_combine(Service::getFunctions(), Service::getFunctions()),
+                    'placeholder' => 'Please select functions',
+                    'multiple' => true,
+                    'attr' => [
+                        'class' => 'select2',
+                        'data-placeholder' => 'Please select functions',
+                    ]
+                ]);
+        }
+        if ($supplier->isVirtualAssistant()) {
+            $builder
+                ->add('functions', ChoiceType::class, [
+                    'choices' => array_combine(Service::getFunctions(), Service::getFunctions()),
+                    'placeholder' => 'Please select the VA functions you performed for this client',
+                    'multiple' => true,
+                    'attr' => [
+                        'class' => 'select2',
+                        'data-placeholder' => 'Please select the VA functions you performed for this client',
+                    ]
+                ]);
+        }
+        $builder
+            // ->add('campaign', TextType::class, [
+            //     'label' => 'Campaign Name',
+            //     'attr' => [
+            //         'placeholder' => 'What is the campaign called internally?'
+            //     ]
+            // ])
+         
+            ->add('lengthOFtimes', ChoiceType::class, [
+                'label' => 'Length of time they were a customer?',
+                'choices' => array_combine(Reference::getlengthOFtimes_S(), Reference::getlengthOFtimes_S()),
+                'placeholder' => 'Please select',
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Please select functions',
-                ]
-            ])
-            ->add('campaign', TextType::class, [
-                'label' => 'Campaign Name',
-                'attr' => [
-                    'placeholder' => 'What is the campaign called internally?'
+                    'data-placeholder' => 'Please select',
                 ]
             ])
             ->add('campaignDescription', TextareaType::class, [
-                'label' => 'Campaign Description (what work did you do for them?)',
+                'label' => 'Notes',
+                'required' => false,
                 'attr' => [
-                    'placeholder' => 'In your own words, describe the campaign',
+                    'placeholder' => 'Enter any notes about the work you did with the client that you would like to mention',
                     'rows' => 3,
                     'class' => 'resize-vertically'
                 ]
