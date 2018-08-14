@@ -12230,7 +12230,7 @@ a:hover,a:active,a:focus{
 
 .box-header>.box-tools{
   position:absolute;
-  right:40%;
+  left:37%;
   top:5px;
 }
 .box-header>.box-tools .btn-m-p{

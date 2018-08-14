@@ -77,12 +77,12 @@ class CustomerType extends AbstractType
                 //     'scale' => 2,
                 // ]);
                 ->add('percentageOfBusiness', ChoiceType::class, [
-                    'label' => '% of Current Business',
+                    'label' => '% of Current Total Business',
                     'choices' => array_combine(Customer::getPercentageOfBusiness_S(), Customer::getPercentageOfBusiness_S()),
-                    'placeholder' => 'Please select % of Current Total Business', 
+                    'placeholder' => 'Please select', 
                     'attr' => [
                         'class' => 'select2',
-                        'data-placeholder' => 'Please select % of Current Total Business',
+                        'data-placeholder' => 'Please select',
                     ],
                 ]);
         }
