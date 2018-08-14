@@ -48,6 +48,9 @@
                 {% if supplier.virtualAssistant %}
                     {{ form_start(form, {'attr': {'class': 'dirty-check'}}) }}
                     <div class="box-body">
+                        <div class = "row panel-body">
+                            <input type="text"></input>
+                        </div>
                         <div class="row">
                         {% for experience in form.experiences %}
                             <div class="col-sm-6">
