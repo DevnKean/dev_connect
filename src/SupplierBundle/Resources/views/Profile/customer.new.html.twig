@@ -40,6 +40,9 @@
     {{ parent() }}
     <script type="text/javascript">
         var collections = [];
+        var global_len = -1;
+        var global_flag = true;
+        var local_len =  -1;
         $('.customer-collection').collection({
             add: '<button type="submit" class="btn btn-success">Add another customer</button>',
             remove: '<button type="button" class="btn btn-danger pull-right">Remove</button>',
@@ -58,19 +61,20 @@
 
                 var obj = $('.customer-collection .box.box-info .box-header.with-border');
                 obj.each(function (index, ele) {                    
-                    console.log(index);
+                    //console.log(index);
                     temp = index + 1;
                     var str = "Customer " + temp;
                     temp = temp - 1;
                     var button_length = index * 2+1;
-                    console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')'));
+                    //console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')'));
                     $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')').html(str);
                     $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')').on('click', function() {
                         var temp = index;
-                        console.log(temp);
-                        console.log("button_click");
-                        console.log($('.customer-collection .box.box-info .box-body:eq('+(temp)+')').css('display'));
-                        console.log($('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')'));
+                        //console.log(temp);
+                        //console.log("button_click");
+                        //console.log($('.customer-collection .box.box-info .box-body:eq('+(temp)+')').css('display'));
+                        //console.log($('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')'));
+
                         var str = "Customer " + (temp+1);
                         if($('.customer-collection .box.box-info .box-body:eq('+(temp)+')').css('display') == 'none' ) {
                             $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(temp)+')').html(str);
@@ -86,42 +90,144 @@
                 //console.log(obj.length);
             },
             after_add: function(collection, element) {
+                var obj = $('.customer-collection .box.box-info .box-header.with-border');
+                var len;
+                if(global_len == -1){
+                    global_len = obj.length;
+                    local_len = obj.length;
+                }
+                var temp_index;
+                if(global_flag == true)
+                    temp_index = global_len;
+                else 
+                    temp_index = local_len;
+                len = obj.length;
+                $('.select2-selection__rendered').on('DOMSubtreeModified',function(){
+                    if($(this).text() != '') {
+                        $(this).parent().parent().parent().closest('span').removeClass('mandatory-border');
+                    }
+                    //var function_text = $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').length;
+                     //$('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').parent().removeClass('mandatory-border');
+                });
+                //console.log($('ul.select2-selection__rendered'));
+                $('ul.select2-selection__rendered').on('click',function() {
+                    $(this).removeClass('mandatory-border');
+                });
+                $('input[type="number"]').click(function () {
+                    if($(this).val()!='')
+                        $(this).removeClass('mandatory-border');
+                }); 
+
+
                 element.find('select').select2().trigger('change');
                 //form set the title with name value
                 
                 //////
                 //form name increase
-                var obj = $('.customer-collection .box.box-info .box-header.with-border');
-                var len = obj.length;
+                
                 
                 var str = "Customer " + len;
                 len = len - 1;                
-                console.log('customer: ' + len);                
                 $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+len+')').html(str);
                 len = len-1;
+                 //mandatory check
+                var indVer_txt = $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_industryVertical-container').text();
+                var funcs_li_len = $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').length;
+                var long_customer = $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_workPeriod-container').text();
+                var total_act = $('#supplierbundle_customer_customers_'+(temp_index-2)+'_totalSeats').val();
+                var percent_business = $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_percentageOfBusiness-container').text();
+                var locations_len = $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2+1)+') li').length; 
+                //console.log(indVer_txt);
+                //console.log(funcs_li_len);
+                //console.log(long_customer);
+                //console.log(total_act);
+                //console.log(percent_business);
+                //console.log(locations_len);       
+                if((indVer_txt == 'Please select their industry vertical') || (funcs_li_len < 2) || (long_customer == 'Please select the duration') || (total_act == '') || (percent_business =='Please select') || (locations_len < 2))
+                {   
+                    console.log('tatal_act_checked: '+ total_act);                    
+                    console.log('percent business_checked: '+ percent_business);
+                    console.log('global_length_checked: '+ (temp_index-2));
+                    //console.log("here");
+                    //console.log($("[id^='supplierbundle_customer_customers_3']").attr("id"));
+                    //$('#select2').initialize();
+                    if(indVer_txt == 'Please select their industry vertical'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_industryVertical-container').parent().parent().parent().closest('span').addClass('mandatory-border');
+                        console.log('Please select their industry vertical');
+                    }
+                    else if(indVer_txt != 'Please select their industry vertical'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_industryVertical-container').parent().parent().parent().removeClass('mandatory-border');
+                        }
+                    if(funcs_li_len < 2){
+                        $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').parent().addClass('mandatory-border');
+                        console.log('Select functions');
+                    }
+                    else if(funcs_li_len > 1){
+                        $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').parent().removeClass('mandatory-border');
+                    }
+                    if(long_customer == 'Please select the duration'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_workPeriod-container').parent().parent().parent().closest('span').addClass('mandatory-border');
+                        console.log('Please select the duration');
+                    }
+                    else if(long_customer != 'Please select the duration'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_workPeriod-container').parent().parent().parent().closest('span').removeClass('mandatory-border');
+                    }
+                    if(total_act == ''){
+                        $('#supplierbundle_customer_customers_'+(temp_index-2)+'_totalSeats').addClass('mandatory-border');
+                        console.log('Please enter total number');
+                    }
+                    else if(total_act != ''){
+                        $('#supplierbundle_customer_customers_'+(temp_index-2)+'_totalSeats').removeClass('mandatory-border');
+                    }
+                    if(percent_business =='Please select'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_percentageOfBusiness-container').parent().parent().parent().closest('span').addClass('mandatory-border');
+                        console.log('Please select % of business');
+                    }
+                    else if(percent_business != 'Please select'){
+                        $('#select2-supplierbundle_customer_customers_'+(temp_index-2)+'_percentageOfBusiness-container').parent().parent().parent().closest('span').removeClass('mandatory-border');
+                    }
+                    if(locations_len < 2){
+                        $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2+1)+') li').parent().addClass('mandatory-border');
+                        console.log('Please select Locations');
+                    }
+                    else if(locations_len > 1){
+                        $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2+1)+') li').parent().removeClass('mandatory-border');
+                    } 
+                    global_len = global_len + 1;
+                    local_len = temp_index;
+                    global_flag = false;
+                    return false;
+                }
+                else if((indVer_txt == 'Please select their industry vertical') && (funcs_li_len < 2) && (long_customer == 'Please select the duration') && (total_act == '') && (percent_business =='Please select') && (locations_len < 2)){
+                    $('#select2-supplierbundle_customer_customers_'+(global_len-2)+'_industryVertical-container').parent().parent().parent().removeClass('mandatory-border');
+                    $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2)+') li').parent().removeClass('mandatory-border');
+                    $('#select2-supplierbundle_customer_customers_'+(global_len-2)+'_workPeriod-container').parent().parent().parent().closest('span').removeClass('mandatory-border');
+                    $('#supplierbundle_customer_customers_'+(global_len-2)+'_totalSeats').removeClass('mandatory-border');
+                    $('#select2-supplierbundle_customer_customers_'+(global_len-2)+'_percentageOfBusiness-container').parent().parent().parent().closest('span').removeClass('mandatory-border');
+                    $('.col-md-6 .form-group .selection .select2-selection.select2-selection--multiple .select2-selection__rendered:eq('+(len*2+1)+') li').parent().removeClass('mandatory-border');
+                }
+                console.log('global_length: '+ (global_len-2));
+                console.log('tatal_act: '+ total_act);
+                console.log('percent business: '+ percent_business);
+
                 var button_length = (len + 1) * 2+1;
-                console.log($('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+button_length+')'));
                 $('.customer-collection .box.box-info .box-header.with-border .box-tools.pull-right>button:eq('+(button_length)+')').on('click', function() {
-                    console.log($("#supplierbundle_customer_customers_1_name").val());
+                    
                     if($('.customer-collection .box.box-info .box-body:eq('+(len+1)+')').css('display') == 'none' ) {
-                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').html(str);
+                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').text(str);
                     } else {
                         company_name = $("#supplierbundle_customer_customers_"+(len+1)+"_name").val();
                         if(company_name == ''){
                             company_name = str;
                         }
-                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').html(company_name);
+                        $('.customer-collection .box.box-info .box-header.with-border>h3:eq('+(len+1)+')').text(company_name);
                     }
-                });
-                //len = len -1;
-                //console.log('collapse: ' + len);
-                //$('.customer-collection .box.box-info:eq('+len+')').addClass('collapsed-box');
-                //$('.customer-collection .box.box-info .box-header:eq('+len+')').css("display","block");
-                //$('.customer-collection .box.box-info .box-tools .btn-box-tool .fa:eq('+len+')').addClass("fa-plus");
-                //$('.customer-collection .box.box-info .box-tools .btn-box-tool .fa:eq('+len+')').addClass("fa-minus");
+                });                
                 /////////
                 $('.dirty-check').find('button[type=submit]').removeAttr('disabled');
                 $(".select2-search__field").attr("data-is-dirrty", "false");
+                global_len = global_len + 1;
+                global_flag = true;
                 return true;
             },
             after_remove: function(collection, element) {

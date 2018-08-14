@@ -12238,7 +12238,10 @@ a:hover,a:active,a:focus{
   padding-left: 9px;
   padding-right: 9px;
 }
-
+.mandatory-border {
+  border: 1px solid red;
+  border-radius: 5px;
+}
 .box-header>.box-tools [data-toggle="tooltip"]{
   position:relative
 }

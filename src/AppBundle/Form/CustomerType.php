@@ -59,7 +59,7 @@ class CustomerType extends AbstractType
                 'multiple' => true,
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => ' Click here to select (you can add multiple)',
+                    'data-placeholder' => 'Click here to select (you can add multiple)',
                 ],
             ]);
         if ($supplier->isOutSourcing()) {
