@@ -80,7 +80,8 @@ pre{
 }
 code,kbd,pre,samp{
   /* monospace */
-  font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+  font-family:monospace,monospace;
+  /*font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;*/
   font-size:1em
 }
 button,input,optgroup,select,textarea{
@@ -10718,8 +10719,8 @@ html,body{
   height:100%
 }
 body{
-  /* font-family:'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif; */
-  font-family:monospace;
+  font-family:'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+  /* font-family:monospace; */
   font-weight:500;
   overflow-x:hidden;
   overflow-y:auto

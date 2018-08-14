@@ -50,7 +50,25 @@
 {% block javascripts_inline %}
     {{ parent() }}
     <script type="text/javascript">
-        $('#supplierbundle_reference_currentReferences_0_workPhone').mask('(+99) 999-9999');
-        $('#supplierbundle_reference_currentReferences_1_workPhone').mask('(+99) 999-9999');
+        //phone number mask template
+        //$('#supplierbundle_reference_currentReferences_0_workPhone').mask('(+99) 999-9999');
+        //$('#supplierbundle_reference_currentReferences_1_workPhone').mask('(+99) 999-9999');
+        for(var i = 0; i<2; i ++){
+            $('#supplierbundle_reference_currentReferences_'+i+'_workPhone').keydown(function(evt){
+                evt = evt || window.event;
+                var charCode = evt.which || evt.keyCode;
+                var charStr = String.fromCharCode(charCode);           
+                if (!/[0-9]/i.test(charStr)) {
+                    //console.log(charStr);
+                    //console.log('yes');
+                    if(/[ ]/i.test(charStr)){return true;}
+                    if(/[]/i.test(charStr)){return true;}
+                    if(/[]/i.test(charStr)){return true;}
+                    if(/[»]/i.test(charStr)){return true;}
+                    if(/[+]/i.test(charStr)){return true;}
+                    return false;
+                }
+            });
+        }
     </script>
 {% endblock %}
