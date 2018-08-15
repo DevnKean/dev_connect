@@ -46,7 +46,6 @@
                                     {% if  entry.feedbackStatus is not constant('AppBundle\\Entity\\LogEntry::STATUS_APPROVED') and entry.feedbackStatus is not constant('AppBundle\\Entity\\LogEntry::STATUS_FEEDBACK') %}
                                     <a href="{{ path('supplier_entry_approve', {'id': supplier.id, 'entryId': entry.id}) }}" class="btn {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_APPROVAL') ? 'btn-warning' : 'btn-success'}}  btn-xs approve">
                                         <i class="fa fa-check-circle"></i> {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_APPROVAL') ? 'Approved pending' : 'Approve'}}
-                                        <span>{{ entry.feedbackStatus }} </span>
                                     </a>
                                     <button type="button" class="btn {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_FEEDBACK') ? 'btn-warning' : 'btn-info'}}  btn-xs feedback" data-entry-id="{{ entry.id }}" data-supplier-id="{{ supplier.id }}" data-toggle="modal">
                                         <i class="fa fa-plus"></i> {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_FEEDBACK') ? 'Feedback Ready' : 'Add Feedback'}}
