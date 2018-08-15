@@ -190,11 +190,11 @@ class Experience implements StringableInterface
     public static function getSelfRatings()
     {
         return [
-            'Exceptional',
-            'Above average',
-            'I\'m OK but still learning',
-            'I\'ve just started and keen to prove I can do it',
-            'It\'s not something I\'m interested in doing'
+            'Expert',
+            'Advanced',
+            'Intermediate',
+            'Novice',
+            'Basic skills only'
         ];
     }
 }
