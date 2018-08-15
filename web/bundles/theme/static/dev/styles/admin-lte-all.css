@@ -12256,7 +12256,8 @@ a:hover,a:active,a:focus{
   left:auto
 }
 .box-header>.box-tools .dropdown-menu>li>a{
-  color:#444 !important
+  /* color:#444 !important; */
+  color: #639941 !important;
 }
 .btn-box-tool{
   padding:5px;
@@ -12265,12 +12266,16 @@ a:hover,a:active,a:focus{
   /* color:#97a0b3; */
   color: #639941;
 }
+.btn-m-p.focus,.btn-m-p:focus{
+  color: #639941 !important;
+}
 .open .btn-box-tool,.btn-box-tool:hover{
   /* color:#606c84; */
-  color:#d5d7db;
+  /* color:#d5d7db; */
+  color: #639941;
 }
 .btn-box-tool.btn:active{
-  box-shadow:none
+  box-shadow:none;
 }
 .box-body{
   border-top-left-radius:0;
