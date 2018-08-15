@@ -2219,7 +2219,7 @@ label{
   display:inline-block;
   max-width:100%;
   margin-bottom:5px;
-  font-weight:300
+  font-weight:700
 }
 input[type=search]{
   -webkit-box-sizing:border-box;
@@ -11808,10 +11808,10 @@ a:hover,a:active,a:focus{
 }
 /*width of total seats and percentage of business*/
 .col-md-3 .form-group input {
-  width: 35% !important;
+  width: 40% !important;
 }
 .poBselect .select2.select2-container.select2-container--bootstrap{
-  width: 40% !important;
+  width: 43% !important;
 }
 
 .form-control:not(select){
@@ -12257,10 +12257,12 @@ a:hover,a:active,a:focus{
   padding:5px;
   font-size:12px;
   background:transparent;
-  color:#97a0b3
+  /* color:#97a0b3; */
+  color: white;
 }
 .open .btn-box-tool,.btn-box-tool:hover{
-  color:#606c84
+  /* color:#606c84; */
+  color:#d5d7db;
 }
 .btn-box-tool.btn:active{
   box-shadow:none
