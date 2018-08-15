@@ -10,7 +10,7 @@
             {% include '@Supplier/Profile/notification.html.twig' %}
             {% include '@Supplier/Profile/feedback.html.twig' %}
             <div class="box box-success">
-                <div class="box-header with-border alert alert-info">
+                <div class="box-header with-border alert header-area">
                     <h4>
                         {% if supplier.outSourcing %}
                         {{ constant('AppBundle\\Entity\\Contact::TYPE_PRIMARY')|upper  }} - The owner of the contract with CX Connect<br>

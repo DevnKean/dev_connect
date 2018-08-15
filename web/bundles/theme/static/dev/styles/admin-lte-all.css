@@ -11814,7 +11814,11 @@ a:hover,a:active,a:focus{
 .poBselect .select2.select2-container.select2-container--bootstrap{
   width: 43% !important;
 }
-
+/* header area */
+.header-area {
+  background-color: #cbc22e !important; 
+  color: black !important;
+}
 .form-control:not(select){
   -webkit-appearance:none;
   -moz-appearance:none;
@@ -12259,7 +12263,7 @@ a:hover,a:active,a:focus{
   font-size:12px;
   background:transparent;
   /* color:#97a0b3; */
-  color: white;
+  color: #639941;
 }
 .open .btn-box-tool,.btn-box-tool:hover{
   /* color:#606c84; */

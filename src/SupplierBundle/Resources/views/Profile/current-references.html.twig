@@ -9,7 +9,7 @@
             {% include '@Supplier/Profile/notification.html.twig' %}
             {% include '@Supplier/Profile/feedback.html.twig' %}
             <div class="box box-primary">
-                <div class="box-header with-border alert " style="background-color: #cbc22e; color: black;">
+                <div class="box-header with-border alert header-area">
                     {% if supplier.outSourcing %}            
                         <h4>Please provide contact details for two current customers who will act as a reference for your business.</h4>
                         Please note this is for our (CX Connect) purposes only. We will not be proving customer references to potential leads.<br>
@@ -59,6 +59,7 @@
                 var charCode = evt.which || evt.keyCode;
                 var charStr = String.fromCharCode(charCode);           
                 if (!/[0-9]/i.test(charStr)) {
+                    //console.log(charCode);
                     //console.log(charStr);
                     //console.log('yes');
                     if(/[ ]/i.test(charStr)){return true;}
@@ -66,6 +67,8 @@
                     if(/[]/i.test(charStr)){return true;}
                     if(/[»]/i.test(charStr)){return true;}
                     if(/[+]/i.test(charStr)){return true;}
+                    if(charCode == 107){return true;}
+                    if((charCode>95)&&(charCode<106)){return true;}
                     return false;
                 }
             });
