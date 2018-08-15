@@ -43,7 +43,6 @@
                                 <td>{{ entry.feedback|raw }}</td>
                                 <td>{{ entry.supplierReply|raw }}</td>
                                 <td>
-                                    <span>{{ entry.feedbackStatus }} </span>
                                     {% if  entry.feedbackStatus is not constant('AppBundle\\Entity\\LogEntry::STATUS_APPROVED') and entry.feedbackStatus is not constant('AppBundle\\Entity\\LogEntry::STATUS_FEEDBACK') %}
                                     <a href="{{ path('supplier_entry_approve', {'id': supplier.id, 'entryId': entry.id}) }}" class="btn {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_APPROVAL') ? 'btn-warning' : 'btn-success'}}  btn-xs approve">
                                         <i class="fa fa-check-circle"></i> {{ entry.feedbackStatus is constant('AppBundle\\Entity\\LogEntry::STATUS_READY_FOR_APPROVAL') ? 'Approved pending' : 'Approve'}}
