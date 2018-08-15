@@ -269,7 +269,7 @@ class SupplierController extends Controller
                         ),
                         'text/html'
                     );
-                //$mailer->send($message);
+                // $mailer->send($message);
             } elseif ($status == SupplierProfile::STATUS_FEEDBACK && $supplier->getProfileContact()) {
                 $message = (new \Swift_Message("Action required: Feedback for your $profile profile section"))
                     ->setFrom('admin@cxconnect.com.au', 'CX Connect')
@@ -281,7 +281,7 @@ class SupplierController extends Controller
                         ),
                         'text/html'
                     );
-                //$mailer->send($message);
+                // $mailer->send($message);
             }
         } catch (\Exception $e) {
 
@@ -390,6 +390,7 @@ class SupplierController extends Controller
         $manager->persist($entry);
         $manager->flush();
         $this->addFlash('success', 'Entry Status updated');
+        sleep(2);
         return $this->redirectToRoute('supplier_activity_log', ['id' => $id, 'slug' => $profile->getSlug()]);
     }
 
