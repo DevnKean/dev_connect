@@ -289,7 +289,6 @@ class SupplierController extends Controller
 
 
         $this->addFlash('success', 'Profile Status updated');
-        sleep(10);
         return $this->redirectToRoute('supplier_activity_log', compact('id', 'slug'));
     }
 
@@ -390,7 +389,6 @@ class SupplierController extends Controller
         $manager->persist($entry);
         $manager->flush();
         $this->addFlash('success', 'Entry Status updated');
-        sleep(10);
         return $this->redirectToRoute('supplier_activity_log', ['id' => $id, 'slug' => $profile->getSlug()]);
     }
 
