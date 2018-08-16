@@ -358,7 +358,7 @@ class SupplierController extends Controller
         return $this->render(
             'AppBundle:Supplier:change-log.html.twig',
             compact('entries', 'supplier', 'profile', 'supplierProfile', 'readyToApprovalCount', 'readyForFeedbackCount', 'pendingReviewCount')
-         );
+         )->expire();
 
     }
 
