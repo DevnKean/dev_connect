@@ -333,28 +333,27 @@ class SupplierController extends Controller
         $profileName = Profile::getProfile($slug);
         $profile = $supplier->getProfile($profileName);
         $supplierProfile = $em->getRepository('AppBundle:SupplierProfile')->findOneBy(['supplier' => $supplier, 'profile'=> $profile]);
-
         $entries = $em
             ->getRepository('AppBundle:LogEntry')
             ->findBy(['name' => Profile::getProfile($slug), 'user' => $supplier->getUserIds()], ['loggedAt' => 'desc']);
-
+        
         $readyToApprovalCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_READY_FOR_APPROVAL;
         }));
-
+        var_dump("ASDFASDFASDFASDFASDF".$readyToApprovalCount);
         $readyForFeedbackCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_READY_FOR_FEEDBACK;
         }));
+        var_dump("ASDFASDFASDFASDFASDF".$readyForFeedbackCount);
 
         $pendingReviewCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_PENDING;
         }));
 
-
+        var_dump("ASDFASDFASDFASDFASDF".$pendingReviewCount);
         $entries = $this
             ->get('activity_log.formatter')
             ->format($entries);
-
 
         return $this->render(
             'AppBundle:Supplier:change-log.html.twig',
