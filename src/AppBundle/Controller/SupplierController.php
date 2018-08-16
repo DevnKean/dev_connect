@@ -351,14 +351,18 @@ class SupplierController extends Controller
         }));
 
         var_dump("ASDFASDFASDFASDFASDF".$pendingReviewCount);
+        var_dump(new \DateTime());
         $entries = $this
             ->get('activity_log.formatter')
             ->format($entries);
 
-        return $this->render(
+        $response = $this->render(
             'AppBundle:Supplier:change-log.html.twig',
             compact('entries', 'supplier', 'profile', 'supplierProfile', 'readyToApprovalCount', 'readyForFeedbackCount', 'pendingReviewCount')
-         )->expire();
+        );
+
+        $response->expire();
+        return $response;
 
     }
 
