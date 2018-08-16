@@ -39,6 +39,7 @@ framework:
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
+    cache: false
     strict_variables: '%kernel.debug%'
     globals:
         admin_skin: skin-green fixed
