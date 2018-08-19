@@ -4,21 +4,21 @@
         <div class="panel-body">
             <div class="row {{ form.type.vars.value }}-contact">
                 {{ form_row(form.type) }}
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="col-lg-6 col-sm-12 col-md-12">
                     {{ form_row(form.firstName) }}
                 </div>
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="col-lg-6 col-sm-12 col-md-12">
                     {{ form_row(form.lastName) }}
                 </div>
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="col-lg-6 col-sm-12 col-md-12">
                     {{ form_row(form.email) }}
                 </div>
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="col-lg-6 col-sm-12 col-md-12">
                     {{ form_row(form.workPhone) }}
                 </div>
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                {# <div class="col-lg-4 col-sm-12 col-md-12">
                     {{ form_row(form.mobilePhone) }}
-                </div>
+                </div> #}
 
                 {% if form.type.vars.value is not constant('AppBundle\\Entity\\Contact::TYPE_PRIMARY') %}
                     <div class="col-lg-4 col-sm-12 col-md-12" style="padding-top: 25px">

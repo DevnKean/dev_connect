@@ -9,10 +9,16 @@
             {% include '@Supplier/Profile/notification.html.twig' %}
             {% include '@Supplier/Profile/feedback.html.twig' %}
             <div class="box box-success">
-                <div class="box-header with-border alert header-area">                    
+                <div class="box-header with-border alert header-area">
+                    {% if not supplier.Consultants %}              
                     <h4>Please provide an indication of the commercial models you are comfortable in offering as part of your proposals to clients.</h4>
                     Please note you will only be sent leads that are compatible with your preferences.<br>
-                    Remember its still up to you what you ultimately propose!                    
+                    Remember its still up to you what you ultimately propose!
+                    {% endif %}
+                    {% if supplier.Consultants %}              
+                    <h4>To ensure we don't waste your time or the customers in referring leads that aren't suitable for either party, please provide an indication of your standard daily rates below.</h4>
+                    Note this information is for our purposes only, you will still be free to propose and negotiate your rates directly with the customer.<br>                    
+                    {% endif %}           
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

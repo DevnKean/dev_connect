@@ -120,7 +120,7 @@ class Service
     {
         return [
             'Outsourcing',
-            'Consulting',
+            'Consultants',
             'Virtual Assistant'
         ];
     }
@@ -192,6 +192,36 @@ class Service
             'Reporting',
             'Book keeping',
             'Scheduling' 
+        ];
+    }
+
+    public static function getConsulFunctions()
+    {
+        return [            
+            'Operational Reviews/Health Checks',
+            'Workforce Management/Optimisation',
+            'Employee Engagement',
+            'Leadership and Executive Coaching & Mentoring',
+            'Customer Experience / Voice of the Customer',
+            'Customer Journey Mapping',
+            'Process Optimisation & Mapping',
+            'Technology Design & Implementation',
+            'Self-Service strategy',
+            'Cost Optimisation/reduction',
+            'CX Strategy',
+            'Social Media',
+            'Procurement including RFI, RFP, RFQs',
+            'Key Performance Indicators',
+            'Quality Frameworks',
+            'Knowledge Management',
+            'Sales Optimisation',
+            'BCP/Disaster Recovery',
+            'Project Management',
+            'Change Management',
+            'Telephony design (ACD/PBX/IVR)',
+            'Artificial Intelligence/Robotic Process Automation',
+            'Workforce Transformation',
+            'Other*',
         ];
     }
 

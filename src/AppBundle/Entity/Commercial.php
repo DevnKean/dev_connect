@@ -34,6 +34,22 @@ class Commercial implements StringableInterface
     private $models;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="dailyrate", type="string", length=50)
+     * @Gedmo\Versioned
+     */
+    private $dailyrate;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interestlead", type="string", length=50)
+     * @Gedmo\Versioned
+     */
+    private $interestlead;
+
+    /**
      * @var Supplier
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Supplier", inversedBy="commercial")
      * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id")
@@ -79,6 +95,54 @@ class Commercial implements StringableInterface
         return $this->models;
     }
 
+
+    /**
+     * Set dailyrate
+     *
+     * @param string $dailyrate
+     *
+     * @return Reference
+     */
+    public function setDailyrate($dailyrate)
+    {
+        $this->dailyrate = $dailyrate;
+
+        return $this;
+    }
+
+    /**
+     * Get dailyrate
+     *
+     * @return string
+     */
+    public function getDailyrate()
+    {
+        return $this->dailyrate;
+    }
+
+    /**
+     * Set interestlead
+     *
+     * @param string $interestlead
+     *
+     * @return Reference
+     */
+    public function setInterestlead($interestlead)
+    {
+        $this->interestlead = $interestlead;
+
+        return $this;
+    }
+
+    /**
+     * Get interestlead
+     *
+     * @return string
+     */
+    public function getInterestlead()
+    {
+        return $this->interestlead;
+    }
     /**
      * @return Supplier
      */
@@ -126,6 +190,22 @@ class Commercial implements StringableInterface
         }
 
         return [];
+    }
+    public static function getDailyrateD()
+    {
+        return [           
+            'Premium (Above $2,500 per day)',
+            'Above average ($1,800 to $2,500)',
+            'Average ($1,200 to $1,800)',
+            'Budget (Below $1,200 per day)',
+        ];
+    }
+    public static function getInterestleadD()
+    {
+        return [
+            'Yes' => 'Yes',
+            'No' => 'No',
+        ];
     }
 
     /**

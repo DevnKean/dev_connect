@@ -67,13 +67,13 @@ class Contact implements StringableInterface
      */
     private $workPhone;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mobile_phone", type="string", length=255)
-     * @Gedmo\Versioned
-     */
-    private $mobilePhone;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="mobile_phone", type="string", length=255)
+    //  * @Gedmo\Versioned
+    //  */
+    // private $mobilePhone;
 
     /**
      * @var Supplier
@@ -199,29 +199,29 @@ class Contact implements StringableInterface
         return $this->workPhone;
     }
 
-    /**
-     * Set mobilePhone
-     *
-     * @param string $mobilePhone
-     *
-     * @return Contact
-     */
-    public function setMobilePhone($mobilePhone)
-    {
-        $this->mobilePhone = $mobilePhone;
+    // /**
+    //  * Set mobilePhone
+    //  *
+    //  * @param string $mobilePhone
+    //  *
+    //  * @return Contact
+    //  */
+    // public function setMobilePhone($mobilePhone)
+    // {
+    //     $this->mobilePhone = $mobilePhone;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get mobilePhone
-     *
-     * @return string
-     */
-    public function getMobilePhone()
-    {
-        return $this->mobilePhone;
-    }
+    // /**
+    //  * Get mobilePhone
+    //  *
+    //  * @return string
+    //  */
+    // public function getMobilePhone()
+    // {
+    //     return $this->mobilePhone;
+    // }
 
     /**
      * @return Supplier
@@ -292,7 +292,11 @@ class Contact implements StringableInterface
                 self::TYPE_PRIMARY,
             ];
         }
-
+        if ($supplier->isConsultants()) {
+            return [
+                self::TYPE_PRIMARY,
+            ];
+        }
         return [];
     }
 

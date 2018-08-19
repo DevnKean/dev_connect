@@ -58,22 +58,22 @@ class ContactType extends AbstractType
                     'attr' => [
                         'class' => 'work-phone'
                     ],
-                    'label' => 'Work Phone',
-                    'required' => true,
-                    'constraints' => [
-                        new NotBlank()
-                    ]
-                ])
-                ->add('mobilePhone', TextType::class, [
-                    'attr' => [
-                        'class' => 'mobile-phone'
-                    ],
-                    'label' => 'Mobile Phone',
+                    'label' => 'Best Contact Number',
                     'required' => true,
                     'constraints' => [
                         new NotBlank()
                     ]
                 ]);
+                // ->add('mobilePhone', TextType::class, [
+                //     'attr' => [
+                //         'class' => 'mobile-phone'
+                //     ],
+                //     'label' => 'Mobile Phone',
+                //     'required' => true,
+                //     'constraints' => [
+                //         new NotBlank()
+                //     ]
+                // ]);
     }
     
     /**

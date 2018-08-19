@@ -1585,6 +1585,10 @@ class Supplier implements StringableInterface
     {
         return $this->hasService(Service::SERVICE_VIRTUAL_ASSISTANT);
     }
+    public function isConsultants()
+    {
+        return $this->hasService(Service::SERVICE_CONSULTANTS);
+    }
 
     /**
      * @return DataAcquisitionProvider[]|ArrayCollection

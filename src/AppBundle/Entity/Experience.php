@@ -34,6 +34,13 @@ class Experience implements StringableInterface
      */
     private $function;
 
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="haveExp", type="string", length=30)
+     * @Gedmo\Versioned
+     */
+    private $haveExp;
     /**
      * @var string
      *
@@ -42,12 +49,38 @@ class Experience implements StringableInterface
      */
     private $yearsExperience;
 
+
+    
+
     /**
      * @var string
      * @ORM\Column(name="self_rating", type="string", length=100, nullable=true)
      * @Gedmo\Versioned
      */
     private $selfRating;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cxEnvironment", type="string", length=100)
+     * @Gedmo\Versioned
+     */
+    private $cxEnvironment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conExp", type="string", length=100)
+     * @Gedmo\Versioned
+     */
+    private $conExp;
+
+      /**
+     * @var string
+     * @ORM\Column(name="wordbio", type="text")
+     * @Gedmo\Versioned
+     */
+    private $wordbio;
 
     /**
      * @var Supplier
@@ -78,6 +111,26 @@ class Experience implements StringableInterface
     public function getFunction()
     {
         return $this->function;
+    }
+
+    /**
+     * @param string $haveExp
+     *
+     * @return Experience
+     */
+    public function setHaveExp($haveExp)
+    {
+        $this->haveExp = $haveExp;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHaveExp()
+    {
+        return $this->haveExp;
     }
 
     /**
@@ -113,6 +166,66 @@ class Experience implements StringableInterface
     }
 
     /**
+     * @param string $cxEnvironment
+     *
+     * @return Experience
+     */
+    public function setCxEnvironment($cxEnvironment)
+    {
+        $this->cxEnvironment = $cxEnvironment;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCxEnvironment()
+    {
+        return $this->cxEnvironment;
+    }
+
+    /**
+     * @param string $conExp
+     *
+     * @return Experience
+     */
+    public function setConExp($cxEnvironment)
+    {
+        $this->conExp = $conExp;
+
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getConExp()
+    {
+        return $this->conExp;
+    }
+
+    /**
+     * @param string $wordbio
+     *
+     * @return Experience
+     */
+    public function setWordbio($wordbio)
+    {
+        $this->wordbio = $wordbio;
+
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getWordbio()
+    {
+        return $this->wordbio;
+    }
+
+    /**
      * @return Supplier
      */
     public function getSupplier()
@@ -144,6 +257,32 @@ class Experience implements StringableInterface
             '5 to 10 Years' => '5 to 10 Years',
             '10 to 20 Years' => '10 to 20 Years',
             '> 20 Years' => '> 20 Years'
+        ];
+    }
+
+    public static function getHaveExpD()
+    {
+        return [
+            'Yes' => 'Yes',
+            'No' => 'No',
+        ];
+    }
+
+    public static function getCxEnvironmentD()
+    {
+        
+    }
+
+    public static function getConExpD()
+    {
+        return [
+            'Expert',
+            'Strong',
+            'Confident',
+            'OK',
+            'Still learning',
+            'No exposure',
+
         ];
     }
 

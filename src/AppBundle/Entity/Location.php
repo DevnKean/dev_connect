@@ -17,6 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Location implements StringableInterface
 {
+
     /**
      * @var int
      *
@@ -48,6 +49,14 @@ class Location implements StringableInterface
      * @Gedmo\Versioned
      */
     private $yearsOpen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="workspace", type="string", length=50)
+     * @Gedmo\Versioned
+     */
+    private $workspace;
 
     /**
      * @var Customer[]
@@ -348,6 +357,30 @@ class Location implements StringableInterface
     }
 
     /**
+     * Set workspace
+     *
+     * @param string $workspace
+     *
+     * @return Location
+     */
+    public function setWorkspace($workspace)
+    {
+        $this->workspace = $workspace;
+
+        return $this;
+    }
+
+    /**
+     * Get yearsOpen
+     *
+     * @return string
+     */
+    public function getWorkspace()
+    {
+        return $this->workspace;
+    }
+
+    /**
      * Set yearsOpen
      *
      * @param string $yearsOpen
@@ -370,7 +403,7 @@ class Location implements StringableInterface
     {
         return $this->yearsOpen;
     }
-
+    
     /**
      * Set totalSeats
      *
@@ -980,6 +1013,15 @@ class Location implements StringableInterface
     public function setIsSundayClosed($isSundayClosed)
     {
         $this->isSundayClosed = $isSundayClosed;
+    }
+
+    public static function getWorkspaceData(){
+        return [
+            'Home Office',
+            'My own private office (not at home)',
+            'Shared Office Space',
+            'Other'
+        ];
     }
 
 }

@@ -36,13 +36,25 @@ class LocationType extends AbstractType
         $supplier = $this->user->getSupplier();
         $builder
             ->add('address', ComplexGooglePlaceAutocompleteType::class, [
-                'label' => 'Full Address (You must select a Google matched address)'
-            ])
-            ->add('yearsOpen', ChoiceType::class, [
-                'choices' => array_combine(Customer::getYears(), Customer::getYears()),
-                'placeholder' => $supplier->isOutSourcing() ? 'Please Select Years facility has been open...' : 'Number of years you’ve been operating from this address',
-                'label' => $supplier->isOutSourcing() ? 'Please Select Years facility has been open...' : 'Number of years you’ve been operating from this address',
+                'label' => $supplier->isConsultants() ? 'Please enter your primary office address (this is not disclosed to customers)' :'Full Address (You must select a Google matched address)',
+                
             ]);
+
+        if(!$supplier->isConsultants()){
+            $builder
+                ->add('yearsOpen', ChoiceType::class, [
+                    'choices' => array_combine(Customer::getYears(), Customer::getYears()),
+                    'placeholder' => $supplier->isOutSourcing() ? 'Please Select Years facility has been open...' : 'Number of years you’ve been operating from this address',
+                    'label' => $supplier->isOutSourcing() ? 'Please Select Years facility has been open...' : 'Number of years you’ve been operating from this address',
+                ]);
+        } else {
+            $builder
+                ->add('workspace', ChoiceType::class, [
+                    'choices' => array_combine(Location::getWorkspaceData(), Location::getWorkspaceData()),
+                    'placeholder' => 'Please enter.',
+                    'label' => 'How would you best describe your primary work space?',
+                ]);
+        }
         if ($supplier->isOutSourcing()) {
             $builder
                 ->add('totalSeats', IntegerType::class, [

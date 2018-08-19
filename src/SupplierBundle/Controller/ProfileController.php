@@ -410,6 +410,14 @@ class ProfileController extends Controller
                     $supplier->addExperience($experience);
                 }
             }
+            if($supplier->isConsultants()){
+                foreach (Service::getConsulFunctions() as $function) {
+                    $experience = new Experience();
+                    $experience->setFunction($function);
+                    $supplier->addExperience($experience);
+                }
+            }
+            
         }
         $logEntries = $manager->getRepository('AppBundle:LogEntry')->findBy([
             'name' => Profile::PROFILE_EXPERIENCE,
@@ -453,6 +461,7 @@ class ProfileController extends Controller
             'form' => $form->createView(),
             'functions' => Service::getFunctions(),
             'vafunctions' => Service::getVAFunctions(),
+            'consfunctions' => Service::getConsulFunctions(),
             'status' => $supplier->getProfileStatus(Profile::PROFILE_EXPERIENCE),
             'profile' => $profile,
             'entries' => $entries,

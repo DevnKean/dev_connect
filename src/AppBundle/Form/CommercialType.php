@@ -13,14 +13,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class CommercialType extends AbstractType
 {
-    /**
+       /**
      * @var User
      */
     private $user;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $storage)
     {
-        $this->user = $tokenStorage->getToken()->getUser();
+        $this->user = $storage->getToken()->getUser();
     }
 
     /**
@@ -28,16 +28,43 @@ class CommercialType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('models', ChoiceType::class, [
-                'choices' => array_combine(Commercial::getCommercialModels($this->user->getSupplier()), Commercial::getCommercialModels($this->user->getSupplier())),
-                'label' => false,
-                'multiple' => true,
-                'expanded' => true,
+    
+        $supplier = $this->user->getSupplier();
+            
+        if(!$supplier->isConsultants()){
+            $builder
+                ->add('models', ChoiceType::class, [
+                    'choices' => array_combine(Commercial::getCommercialModels($this->user->getSupplier()), Commercial::getCommercialModels($this->user->getSupplier())),
+                    'label' => false,
+                    'multiple' => true,
+                    'expanded' => true,
+                    'attr' => [
+                        'data-placeholder' => 'Please select commercial modal'
+                    ]
+                ]);
+        }else {
+            $builder
+            ->add('dailyrate', ChoiceType::class, [
+                'label' => 'How would you describe your average daily rates in comparison to market averages?',
+                'choices' => array_combine(Commercial::getDailyrateD(),Commercial::getDailyrateD()),
+                'required' => false,
+                'placeholder' => 'Select one from drop down',
+                // 'attr' => [
+                //     'class' => 'year-experience'
+                // ]
+            ])
+            ->add('interestlead', ChoiceType::class, [
+                'label' => "There are some situatiuons where customers are seeking some 'skin in the game' with some penalties/incentives based on the outcomes of your consulting. Are you interested in being referred these types of leads?",
+                //'label' => 'Ther are some situatiuons',
+                'choices' => Commercial::getInterestleadD(),
+                'required' => false,
+                'placeholder' => 'select Yes or No',
                 'attr' => [
-                    'data-placeholder' => 'Please select commercial modal'
+                    'class' => 'interestlead'
                 ]
-            ]);
+            ])
+            ;
+        }
     }
     
     /**

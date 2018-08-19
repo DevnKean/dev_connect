@@ -12,8 +12,13 @@
                 <div class="box-header with-border alert header-area">
                     <div class="row experience_header">
                         <div class="col-sm-12">
-                            <h4>Please provide the number of years you have been actively been providing the following services:</h4>
-                            To enable us to understand your key strengths, please select the years of experience, and your self-rating, for each of the functions below.
+                            {# <h4>Please provide the number of years you have been actively been providing the following services:</h4> #}
+                            {% if not supplier.Consultants %} 
+                            <h4>To enable us to understand your key strengths, please select the years of experience, and your self-rating, for each of the functions below.</h4>
+                            {% endif %}
+                            {% if supplier.Consultants %}
+                            <h4>Please provide us with an overview of your skills so we can ensure we understand your key strengths and experiences.</h4>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -53,7 +58,7 @@
                             <div class="col-sm-6">
                                 <div class="panel panel-default">
 
-                                    <div class="panel-body">
+                                    <div class="panel-body experience-height">
                                         <div class="col col-sm-4">
                                         {{ form_widget(experience.function) }}
                                         <h5 class="experience_title">{{ form_label(experience.yearsExperience, vafunctions[loop.index0]) }}</h5>
@@ -69,6 +74,35 @@
                             </div>
                         {% endfor %}
                         </div>
+                    </div>
+                {% endif %}
+                {% if supplier.Consultants %}
+                    {{ form_start(form, {'attr': {'class': 'dirty-check'}}) }}
+                    <div class="box-body">                       
+                        <div class="row">
+                        {% for experience in form.experiences %}
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body experience-height">
+                                        <div class="col col-sm-3">
+                                        {{ form_widget(experience.function) }}
+                                        <h5 class="experience_title">{{ form_label(experience.yearsExperience, consfunctions[loop.index0]) }}</h5>
+                                        </div>
+                                         <div class="col col-sm-3 with_label">
+                                            {{ form_row(experience.haveExp) }}
+                                        </div>
+                                        <div class="col col-sm-3 with_label">
+                                            {{ form_row(experience.yearsExperience) }}
+                                        </div>
+                                        <div class="col col-sm-3 with_label">
+                                            {{ form_row(experience.selfRating) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        {% endfor %}                        
+                        </div>                       
                     </div>
                 {% endif %}
                     {# {% set count = 0 %}

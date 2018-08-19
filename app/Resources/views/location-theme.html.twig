@@ -15,8 +15,13 @@
                 <h3>Your Location Details:</h3>
                 <div class="row">
                     <div class="col-sm-12">
-                        {{ form_row(form.address) }}
+                        {% if form.workspace is defined %}
+                        {{ form_row(form.workspace) }}
+                        {% endif %}
+                        {{ form_row(form.address) }}                        
+                        {% if form.yearsOpen is defined %}
                         {{ form_row(form.yearsOpen) }}
+                        {% endif %}
                         {% if form.totalSeats is defined %}
                         {{ form_row(form.totalSeats) }}
                         {% endif %}
@@ -35,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            {% if not form.workspace is defined %}
             <div class="col-sm-7 col-xs-12">
                 <h3>Your Standard Operational Hours:</h3>
                 <div class="row" style="display: flex; align-items: center">
@@ -150,7 +156,7 @@
                     </div>
                 </div>
             </div>
-
+            {% endif %}
         </div>
     </div>
 {% endblock %}

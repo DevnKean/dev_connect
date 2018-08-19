@@ -340,17 +340,15 @@ class SupplierController extends Controller
         $readyToApprovalCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_READY_FOR_APPROVAL;
         }));
-        var_dump("ASDFASDFASDFASDFASDF".$readyToApprovalCount);
+
         $readyForFeedbackCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_READY_FOR_FEEDBACK;
         }));
-        var_dump("ASDFASDFASDFASDFASDF".$readyForFeedbackCount);
 
         $pendingReviewCount = count(array_filter($entries, function (LogEntry $entry) {
             return $entry->getFeedbackStatus() == LogEntry::STATUS_PENDING;
         }));
 
-        var_dump("ASDFASDFASDFASDFASDF".$pendingReviewCount);
         var_dump(new \DateTime());
         $entries = $this
             ->get('activity_log.formatter')
