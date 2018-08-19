@@ -155,9 +155,9 @@
         $('.year-experience').change(function() {    
             var yearExperience = $(this);
             var row = yearExperience.closest('div.panel-body');
-            //console.log(init_text);
+            console.log("1: "+init_text);
             if ((yearExperience.val() === 'Nil')) {
-                
+                console.log("2: "+init_text);
                 row.find('.self-rating>option:selected').html('Not applicable');
                 //row.find('.self-rating>option:eq(0)').html('Not applicable');
                 
@@ -166,18 +166,20 @@
                 //row.find('.self-rating').attr('disabled', 'disabled');
               
             } else {
-                //row.find('.self-rating>option:eq(0)').html(init_text);
-                             
-                row.find('.self-rating').prop('disabled', false);
-                $('.self-rating').change(function() {
-                    row.find('.self-rating>option:selected').html(init_text);
-                    var selfrating = $(this);  
-                    var row = selfrating.closest('div.panel-body');
-                    init_text = row.find('.self-rating>option:selected').html();                    
-                })
+                console.log("3: "+init_text);
+                row.find('.self-rating>option:selected').html(init_text);                           
+                row.find('.self-rating').prop('disabled', false);                
             }
         }).change();         
-    
+        
+        $('.self-rating').change(function() {
+            //console.log(row.find('.self-rating>option:selected'));
+            //row.find('.self-rating>option:selected').html(init_text);
+            var selfrating = $(this);  
+            var row = selfrating.closest('div.panel-body');
+            init_text = row.find('.self-rating>option:selected').html();
+            console.log("4: "+init_text);            
+        })
         {# $('.year-experience').click(function(){
             if( $('.year-experience').val()=='Nil')
                 console.log('changed');
