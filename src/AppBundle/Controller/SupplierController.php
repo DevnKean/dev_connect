@@ -333,6 +333,7 @@ class SupplierController extends Controller
         $profileName = Profile::getProfile($slug);
         $profile = $supplier->getProfile($profileName);
         $supplierProfile = $em->getRepository('AppBundle:SupplierProfile')->findOneBy(['supplier' => $supplier, 'profile'=> $profile]);
+        $em->clear();
         $entries = $em
             ->getRepository('AppBundle:LogEntry')
             ->findBy(['name' => Profile::getProfile($slug), 'user' => $supplier->getUserIds()], ['loggedAt' => 'desc']);
